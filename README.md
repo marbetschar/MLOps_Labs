@@ -58,4 +58,26 @@ To run notebooks locally, proceed as follows:
 
 #### Running in Google Colab
 
-TODO !
+TODO: Paste actual PAT!
+
+1. Navigate your browser to [colab.research.google.com](colab.research.google.com).
+2. When prompted to open a notebook, select **GitHub**
+![Colab "Open Repo" dialogue](imgs/colab_open_repo.png)
+3. Copy the following URL into the search bar: `https://token@github.com/bil-y/MLOps_Bsc`.
+4. The screen should now look something like the image below:
+![Colab "Open Repo" dialogue pt. 2](imgs/colab_open_repo_with_repos.png)
+5. Select the notebook you want to open.
+6. Once your notebook is open, add a code cell at the very top. You can do this, hover your cursor over the top of the notebook like in the image below:
+![Colab hover](imgs/colab_hover.png)
+
+7. In the code cell, add the following:
+
+ ```shell
+ !git clone https://token@github.com/bil-y/MLOps_Bsc
+ %cd MLOps_Bsc/path/to/notebook
+ ```
+
+where you replace `path/to/notebook` with the path to the jupyter notebook you just opened. For instance, if you opened `lab01a.ipynb`, the statement would become `%cd MLOps_Bsc/lab01`.
+
+8. Connect to a GPU by changing the runtime type:
+![Change Colab runtime](imgs/colab_change_runtime_type.png)
