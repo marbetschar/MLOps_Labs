@@ -287,7 +287,7 @@ st.text_input("Your name", key="name")  # <-- Set the key of this text box to "
 st.session_state.name
 ```
 
-You can find this snippet in `snippets/widget_session_state.py`.
+You can find this snippet in `snippets/session_state.py`.
 We will leverage the session state in the last part of this lab, so a closer look at the [relevant section in the docs](https://docs.streamlit.io/library/advanced-features/session-state) is recommended!
 
 Sometimes, one wants to show or hide a specific chart or section in an app. `st.checkbox` takes a single argument, which is the widget label. In this sample, the checkbox is used to toggle a conditional statement. Similarly, you can use `st.selectbox` to choose from a series. You can write in the options you want, or pass through an array or data frame column.
