@@ -81,9 +81,156 @@ In `lab04/deepchecks_intro` you find a small demo project that trains a binary c
 
 Take a quick look a `data.py` and `train.py` - nothing should surprise you.
 
-Next, let's take a detailed look at `test.py`.
+Before we can look at the contents `test.py`, we have to introduce you to a standard feature of [PyTorch data loaders](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader) that you are perhaps unaware of.
+If you look at the signature
 
-TODO
+> torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=None, sampler=None, batch_sampler=None, num_workers=0, **collate_fn=None**, pin_memory=False, drop_last=False, timeout=0, worker_init_fn=None, multiprocessing_context=None, generator=None, *, prefetch_factor=None, persistent_workers=False, pin_memory_device='')
+
+there's something called a `collate_fn`. What's that? The PyTorch documentation is slightly cryptic, telling us that it
+
+> merges a list of samples to form a mini-batch of Tensor(s). Used when using batched loading from a map-style dataset.
+
+What they are trying to tell us is that the collate function can be used to transform the output batch to any custom format. Here's an example where we use the collate function to stack images along the batch dimension:
+
+```python
+import torch
+from torch.utils.data import DataLoader, Dataset
+from torchvision import transforms
+from PIL import Image
+import os
+
+class CustomDataset(Dataset):
+    def __init__(self, data_dir, transform=None):
+        self.data_dir = data_dir
+        self.transform = transform
+        self.image_files = os.listdir(data_dir)
+
+    def __len__(self):
+        return len(self.image_files)
+
+    def __getitem__(self, idx):
+        img_name = os.path.join(self.data_dir, self.image_files[idx])
+        image = Image.open(img_name)
+        if self.transform:
+            image = self.transform(image)
+        return image
+
+# Define a collate function to handle batch processing
+def custom_collate(batch):
+    # Stack the images in the batch along the batch dimension
+    # This assumes that all images are of the same size
+    return torch.stack(batch)
+
+# Create a custom dataset instance
+data_dir = "path/to/your/dataset"
+custom_dataset = CustomDataset(data_dir, transform=transform)
+
+# Create a DataLoader with custom collate function
+# The collate_fn argument is used to specify how batches are formed
+# In this case, we use our custom_collate function
+dataloader = DataLoader(custom_dataset, batch_size=4, shuffle=True, collate_fn=custom_collate)
+```
+
+Why do we need this? Deepchecks checks validate the model & data by calculating various quantities over the data, labels and predictions. In order to do that, those must be in a pre-defined format, according to the task type. This format depends on the task and data your are trying to test. Deepchecks provides data classes for [tabular](https://docs.deepchecks.com/stable/api/deepchecks.tabular.html#deepchecks.tabular.Dataset), [text](https://docs.deepchecks.com/stable/nlp/usage_guides/text_data_object.html), and [vision (i.e. image) data](https://docs.deepchecks.com/stable/vision/usage_guides/visiondata_object.html#vision-vision-data-class). As we are working with image data, we will be using the vision data class, aptly named [`VisionData`](https://docs.deepchecks.com/stable/vision/usage_guides/visiondata_object.html#vision-vision-data-class).
+
+Deepchecks data classes can be constructed from a other objects like PyTorch `DataLoader`s or Tensorflow `Dataset`s, but we have to make their output match the output that the data class expects. This is where the collat function comes into play, we use it to transform the batch to the correct format for the checks.
+
+The expected data format for vision [is documented here](https://docs.deepchecks.com/stable/vision/usage_guides/supported_tasks_and_formats.html#supported-tasks-and-formats). Deepchecks expects a dictionary of the following form for each batch:
+
+```python
+{
+    'images': [image1, image2, ...],
+    'labels': [label1, label2, ...],
+    'predictions': [prediction1, prediction2, ...],
+    'image_identifiers': [image_identifier1, image_identifier2, ...]
+}
+```
+
+Because dictionaries are not self-documenting, it's better to use the `BatchOutputFormat` helper class provided by deepchecks:
+
+```python
+BatchOutputFormat(
+    images=[image1, image2, ...],
+    labels=[label1, label2, ...],
+    predictions=[prediction1, prediction2, ...],
+    image_identifiers=[image_identifier1, image_identifier2, ...]
+)
+```
+
+Note that the list of required entries depends on the suite you want to run. For data_integrity checks, you don't need predictions. Similarly, the format of each entry depends on the task your model performs: For classification, each element in `predictions` should be an array of logits, while for object detection, each element should be a tuple `(x_min, y_min, w, h, confidence, class_id)`. The exact requirements for each built-in task are defined [here](https://docs.deepchecks.com/stable/vision/usage_guides/supported_tasks_and_formats.html#classification).
+
+We will be running the `model_evaluation` suite, hence we _need_ predictions.
+So, for our (binary) image classification task, a collate function that converts the data into the correct format could look as follows:
+
+```python
+def collate_fn(batch) -> BatchOutputFormat:
+    """Return a batch of images, labels and predictions for a batch of data. The expected format is a dictionary with
+    the following keys: 'images', 'labels' and 'predictions', each value is in the deepchecks format for the task.
+    You can also use the BatchOutputFormat class to create the output.
+    """
+    # batch received as iterable of tuples of (image, label) and transformed to tuple of iterables of images and labels:
+    batch = tuple(zip(*batch))
+
+    # images:
+    inp = torch.stack(batch[0]).detach().numpy().transpose((0, 2, 3, 1))
+    mean = [0.485, 0.456, 0.406]
+    std = [0.229, 0.224, 0.225]
+    inp = std * inp + mean
+    images = np.clip(inp, 0, 1) * 255
+
+    # labels:
+    labels = batch[1]
+
+    # predictions:
+    logits = model.to(device)(torch.stack(batch[0]).to(device))
+    predictions = nn.Softmax(dim=1)(logits)
+    return BatchOutputFormat(images=images, labels=labels, predictions=predictions)
+```
+
+(In `test.py` we construct this function using another function that takes `model` and `device` as an argument. This pattern is described [here](https://docs.deepchecks.com/stable/vision/usage_guides/visiondata_object.html#on-demand-inference).)
+
+Our collate function does the following:
+
+1. Reshape the batch that we get from the data loader.
+2. "De-normalize" the images by rescaling them with the dataset standard deviation and adding the mean.
+3. Extract the ground-truth labels.
+4. Perform inference to obain the
+5. Return a `BatchOutputFormat`.
+
+Using the collate function is as easy as passing it to the DataLoader. Taken from `test.py`:
+
+```python
+test_dataset = AntsBeesDataset(root=os.path.join(data_dir, "val"))
+test_loader = DataLoader(
+  test_loader, batch_size=64, shuffle=False, collate_fn=collate_fn
+)
+```
+
+Then, building the `VisionData` object is just a constructor call away:
+
+```python
+test_data = VisionData(test_loader, task_type='classification')
+```
+
+Running the test suite is just two lines of code away:
+
+```python
+suite = model_evaluation()
+result = suite.run(test_data, max_samples = 5000)
+```
+
+Now you show know everything to understand `test.py`. Take a look and run it.
+`test.py` will generate a report for you to inspect! As you can see, the model isn't particularly good - but that's also not the point of this exercise. 😉
+
+### Your turn: Integrate deepchecks into a GitHub Actions Pipeline
+
+Now it's your turn: Combine your knowledge from the previous parts and implement a GitHub actions workflow that executes the whole pipeline (`data.py`, `train.py`, and `test.py`). You can use `deepchecks_intro/workflows/deepchecks.yaml` as a starting point.
+
+## Testing beyond performance
+
+There are _many_ more things that a model should be tested on.
+
+TODO: Finish this
 
 ---
 
@@ -91,7 +238,7 @@ The final two sections introduce you to two tools that enhance CI/CD pipelines f
 
 ## Continuous machine learning with CML
 
-[Continuous Machine Learning (CML)](https://cml.dev) is a tool that extends common CI/CD solutions (GitHub Actions, GitLab CI/CD, and Bitbucket Pipelines) to machine learning. The idea behind CML is that you use the CI/CD pipeline for training and evaluating your models in the same way that you use them to build and test your code. The `deepchecks` pipeline from above could be enhanced as follows:
+[Continuous Machine Learning (CML)](https://cml.dev) is a tool that extends common CI/CD solutions (GitHub Actions, GitLab CI/CD, and even Bitbucket Pipelines) to machine learning. The idea behind CML is that you use the CI/CD pipeline for training and evaluating your models in the same way that you use them to build and test your code. The `deepchecks` pipeline from above could be enhanced as follows:
 
 TODO: Change this!
 

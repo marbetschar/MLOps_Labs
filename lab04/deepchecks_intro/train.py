@@ -9,36 +9,7 @@ from torch.utils.data import DataLoader
 
 import os
 
-
-class AntsBeesDataset(torchvision.datasets.ImageFolder):
-    """Custom dataset class that inherits from torchvision.datasets.ImageFolder
-    and overrides __getitem__ method to be compatible with albumentations.
-    """
-
-    def __getitem__(self, index: int):
-        """overrides __getitem__ to be compatible to albumentations"""
-        path, target = self.samples[index]
-        sample = self.loader(path)
-        sample = self.get_cv2_image(sample)
-        if self.transforms is not None:
-            transformed = self.transforms(image=sample, target=target)
-            sample, target = transformed["image"], transformed["target"]
-        else:
-            if self.transform is not None:
-                sample = self.transform(image=sample)["image"]
-            if self.target_transform is not None:
-                target = self.target_transform(target)
-
-        return sample, target
-
-    def get_cv2_image(self, image):
-        """Converts PIL image to CV2 image"""
-        if isinstance(image, PIL.Image.Image):
-            return np.array(image).astype("uint8")
-        elif isinstance(image, np.ndarray):
-            return image
-        else:
-            raise RuntimeError("Only PIL.Image and CV2 loaders currently supported!")
+from data import AntsBeesDataset
 
 
 if __name__ == "__main__":
@@ -84,7 +55,7 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
 
-    for epoch in range(2):  # loop over the dataset multiple times
+    for epoch in range(10):  # loop over the dataset multiple times
         for i, data in enumerate(train_loader):
             # get the inputs; data is a list of [inputs, labels])
             inputs, labels = data
@@ -98,9 +69,6 @@ if __name__ == "__main__":
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
-
-            # print statistics
-            print(f"[{epoch + 1}, {i + 1}] loss: {loss.item() / 2000:.3f}")
 
     print("Finished Training")
 
