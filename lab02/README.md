@@ -96,7 +96,7 @@ Glad you asked. _magic_ is not **really** magic, it's [`st.write`](https://docs.
 
 `st.write` has some unique abilities. First and foremost, you can pass as many arguments as you like, they'll all be written to the app. Second, the behavior depends on the type of the argument. You can find the whole list [here](https://docs.streamlit.io/library/api-reference/write-magic/st.write).
 
-Using it is as easy as using _magic_, albeit with a bit more typing. Here's the example from above, but this time with `st.magic`.
+Using it is as easy as using _magic_, albeit with a bit more typing. Here's the example from above, but this time with `st.write`.
 
 ```python
 import streamlit as st
@@ -487,7 +487,7 @@ Why is this useful? Text generation takes time. Because humans are impatient, it
 
 ### Your turn: Build a _real_ chatbot
 
-Use the knowledge you've gained today to build a chatbot powered by an LLM from the Hugging Face Hub. Use the bot you created int [`notebooks/transformers.ipynb`](./notebooks/transformers.ipynb) as a starting point!
+Use the knowledge you've gained today to build a chatbot powered by an LLM from the Hugging Face Hub. Use the bot you created in [`notebooks/transformers.ipynb`](./notebooks/transformers.ipynb) as a starting point!
 
 Don't forget that the `transformers` library comes with [utilities for chat models](https://huggingface.co/docs/transformers/main/chat_templating#advanced-template-writing-tips)!
 
