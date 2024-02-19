@@ -37,7 +37,7 @@ As you can see, there are two tabs: one for experiments and one for models. In t
 | Topic                 | Notebook |
 |-----------------------|----------|
 | Experiment tracking with MLflow  | [Tracking](mlflow_tracking.ipynb) |
-| Hyperparameter tuning with  Ray Tune | [Tuning](ray_tune.ipynb) |
+| Hyperparameter tuning with  Ray Tune | [Tuning](ray_tune.ipynb) ([Solution](ray_tune_solution.ipynb))|
 | Hyperparameter tuning a teeny tiny diffusion model| [Diffusing](diffusion.ipynb)|
 
 [1]: https://mlflow.org/docs/latest/tracking.html#tracking
