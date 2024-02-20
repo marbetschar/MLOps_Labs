@@ -71,7 +71,11 @@ To run notebooks locally, proceed as follows:
 
 #### Running in Google Colab
 
-TODO: Paste actual PAT!
+In the instructions below, replace `token` with
+
+```raw
+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
+```
 
 1. Navigate your browser to [colab.research.google.com](colab.research.google.com).
 2. When prompted to open a notebook, select **GitHub**
