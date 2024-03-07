@@ -1,6 +1,11 @@
-# From notebooks to pipelines to batch processing
+# Data processing: from notebooks to pipelines to batch processing
 
-Everybody loves notebooks, and by now, they can do just about everything: run code, show plots, [build website, publish packages](https://nbdev.fast.ai/) - you name it. Yet, there comes the time, when your project outgrows the notebook stage, when small-scale, interactive experiments have to be converted into automated, production-ready pipelines.
+Everybody loves notebooks, and by now, they can do just about everything: run code, show plots, [build website, publish packages](https://nbdev.fast.ai/) - you name it.
+Yet, there comes the time, when your project outgrows the notebook stage, when small-scale, interactive experiments have to be converted into automated, production-ready pipelines.
+
+This lab is also a latent segway into a broader topic: data-centric MLOps. So far, we have almost exclusively been focussing on the machine learning _models_.
+However, as you certainly know, machine learning only works with good, high quality data. This week, we start our exploration into the data-side of machine learning
+by looking at how you can build and scale data processing pipelines - from notebooks to clusters.
 
 ## What you will learn
 
