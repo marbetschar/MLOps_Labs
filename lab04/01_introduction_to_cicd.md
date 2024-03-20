@@ -132,11 +132,11 @@ jobs:
         run: python -c "import sys; print(sys.version)"
 ```
 
-You can find this workflow in `lab04/.github/github_actions_intro/workflows/python_demo.yaml`.
+You can find this workflow in `lab04/github_actions_intro/workflows/python_demo.yaml`.
 We can run it with `act` by issuing the following command in the `lab04` directory:
 
 ```shell
-act push -W github_actions_intro/workflows
+./bin/act push -W github_actions_intro/workflows
 ```
 
 `act push` simulates a push to your github repository.
@@ -156,7 +156,7 @@ python -m pip install --upgrade pip
 
 </details>
 
-Next, install `lab04/github_actions_demo/requirements.txt`.
+Next, install `lab04/github_actions_intro/requirements.txt`.
 To add a new command, you can either repeat the `run` key
 
 ```yaml
