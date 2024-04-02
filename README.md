@@ -12,8 +12,8 @@ This is the repository for the labs/tutorials of the lecture Machine Learning Op
 |   4  | Experiment management and hyperparameter tuning | MLflow, Ray Tune | [Lab 03](lab03/README.md) |
 |   5  | CI/CD  and testing for code and models | GitHub Actions, PyTest, DeepChecks | [Lab 04](lab01/README.md) |
 |   6  | From notebooks to pipelines to batch processing | Jupyter, Ploomber, Airflow | [Lab 05](lab05/README.md) |
-|   7  | _Coming soon_ | ??? | [Lab 06](lab06/README.md) |
-|   8  | _Coming soon_ | ??? | [Lab 07](lab07/README.md) |
+|   7  | Data-centric MLOps | Git LFS, DVC, Albumentations, diffusers | [Lab 06](lab06/README.md) |
+|   8  | Deploying and protecting machine learning models | ??? | [Lab 07](lab07/README.md) |
 
 ## Setup
 

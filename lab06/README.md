@@ -21,7 +21,7 @@ For each of the topics we have prepared separate sections, which you can find be
 |Git LFS| [Click me](./git_lfs.md)|
 |DVC| [Click me](./dvc.md)|
 |More data! (Augmentation by Albumentation)| [Click me](./notebooks/albumentations.ipynb)|
-|Even more data! (Synthetic data)||
+|Even more data! (Synthetic data)| [Click me](./notebooks/synthetic_data.ipynb) |
 
 ## Recommended Reading
 
@@ -36,7 +36,7 @@ Data versioning and the associated practices are an active field of research. He
 Recommendation Model Training](https://arxiv.org/abs/2108.09373): This paper describes the data storage and ingestion system that Meta uses for their content recommendation algorithms.
 - [NeSSA: Near-Storage Data Selection for Accelerated Machine Learning Training](https://dl.acm.org/doi/10.1145/3599691.3603404): This paper proposes a novel training architecture that selects an "optimal" subset from a big dataset. It also shows the impact of (very) large dataset on training times.
 
-### But I **really** live `git`
+### But I **really** love `git`
 
 There are alternatives to `LFS` that scale better. One such alternative is `git-annex`.
 In their own words,
@@ -51,3 +51,13 @@ You can learn more about `git-annex` on [its website](https://git-annex.branchab
 
 - [Oxen](https://www.oxen.ai/): a lightning fast alternative to DVC, but less stable. Ask the lecturer for anecdotes. ;)
 - [LakeFS](https://lakefs.io/): a heavier alternative to DVC that scales to Petabytes of data. For when you are working with _a lot_ of data.
+
+### Synthetic data
+
+Synthetic data is a hot topic right now. There are many libraries out there, which can be used to generate data, most of which are enterprise solutions
+with rather cumbersome open source versions. Below are a two excellent open source alternatives that also come with great documentation and links to papers.
+
+- [synthcity](https://github.com/vanderschaarlab/synthcity), a library for generating and evaluating synthetic tabular data for privacy, fairness and data augmentation.
+- [nbsynthetic](https://github.com/NextBrain-ai/nbsynthetic), a simple and robust tabular synthetic data generation library for small and medium size datasets.
+
+Generally, such libraries are limited when it comes to domain specific applications. Then it is often best to train your own generative models and come up with you own benchmarks. After all, you should know your data best!

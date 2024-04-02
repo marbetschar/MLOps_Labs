@@ -273,4 +273,4 @@ dvc pull
 ---
 
 That's it, you've mastered the basics of DVC! Don't delete this repository just yet, we will
-use it for the remainder of the lab!
+use it again.
