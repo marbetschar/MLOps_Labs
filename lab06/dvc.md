@@ -46,7 +46,7 @@ Upon running `dvc init`, a [directory `.dvc`](https://dvc.org/doc/user-guide/pro
 
 Should you be unhappy with DVC, you can use `dvc destory` to remove all DVC-specific files from the directory. This is synonymous with "deleting" the DVC project.
 
-Suppose you have a big file, e.g. `hour.csv`. Because it is so big, we cannot check it into Git directly. To add track this file with DVC instead, we can use `dvc add`:
+Suppose you have a big file, e.g. `hour.csv`. Because it is so big, we cannot check it into Git directly. To track this file with DVC instead, we can use `dvc add`:
 
 ```shell
 dvc add hour.csv
@@ -76,9 +76,9 @@ After all, the cache is local. This is where remotes come in. In their own words
 There are two main uses of remote storage:
 
 1. synchronization of large files and directories tracked by DVC
-2. centralization of data storage fro sharing and collaboration
+2. centralization of data storage for sharing and collaboration
 
-DVC supports a range of different providers and storage types.
+DVC supports a range of different providers and storage types such as `LFS`, `S3`, `G-Drive`, [and more](https://dvc.org/doc/user-guide/data-management/remote-storage).
 
 #### Adding and tracking data
 
@@ -238,7 +238,7 @@ Relative paths work, but may lead to surprises.
 
 _Hint_: You can designate a remote the _default remote_ by adding `-d` or `--default` to the command.
 
-<details></details>
+<details>
     <summary>Solution</summary>
 
 ```shell
