@@ -1,6 +1,6 @@
 # GCP Group Setup Guide
 
-Google Cloud Platform (GCP) provides a framework for building and managing applications and services. A `GCP Project` acts as the primary entity under which we manage the groups users, billing and services. This guide shows you how to set up your group and redeem your credits. **_Note:_** Only one person per group needs to complete these steps!
+Google Cloud Platform (GCP) provides a framework for building and managing applications and services. A `GCP Project` acts as the primary entity under which we manage the group's users, billing and services. This guide shows you how to set up your group and redeem your credits. **_Note:_** Only one person per group needs to complete these steps!
 
 ## Create Project
 
@@ -26,7 +26,7 @@ Once the project is created, you can invite your group members.
 
 ## Redeem Credits
 
-To use GCP resources you will need to redeem your groups vouchers and link the credits to your project.
+To use GCP resources you will need to redeem your group's vouchers and link the credits to your project.
 
 1. Open [https://console.cloud.google.com/edu](https://console.cloud.google.com/edu) to get to the credit application.
 1. Verify that you are logged in with the right accound and enter your voucher. Click `Accept and Continue` to redeem it. **_Note:_** you will need to repeat this process for every voucher.
@@ -39,7 +39,7 @@ To use GCP resources you will need to redeem your groups vouchers and link the c
 
 ## Verify Credits
 
-The last step is to verify that the credits are avaliable inside your project.
+The last step is to verify that the credits are available inside your project.
 
 1. Go back to `GCP` and select your project.
 1. To link the credits to the project, open the `Navigation Menue` and select `Billing`
