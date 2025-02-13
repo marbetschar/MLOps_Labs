@@ -16,7 +16,7 @@ we will now look at the data itself: Storing, versioning - and generating more o
 For each of the topics we have prepared separate sections, which you can find below.
 
 |Topic|Link|
-|:---:|:--:|
+|:----|:----|
 |Data-centric MLOps| [Click me](./data_centric_mlops.md) |
 |Git LFS| [Click me](./git_lfs.md)|
 |DVC| [Click me](./dvc.md)|
