@@ -21,9 +21,9 @@ We will start with a good old Jupyter Notebook. Then, you will be introduced to 
 To get you up to speed with Ploomber and Airflow we provide you with a short introduction to each of them.
 
 | Required Reading |Link|
-|:------------------:|:---|
-| Ploombing 101 - Intro to Ploomber| [Click me](./ploomber/ploombing_101.md) |
-| Venting 101 - Intro to Airflow | [Click me](./airflow/venting_101.md) |
+|:------------------|:---|
+| Ploomber 101 | [Click me](./ploomber/ploombing_101.md) |
+| Airflow 101  | [Click me](./airflow/venting_101.md) |
 
 ## A multi-modal coffee pipeline
 

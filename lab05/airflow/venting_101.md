@@ -11,8 +11,10 @@ Deploying and managing airflow is an art and science of its own, which we invite
 An Airflow deployment has many interacting components, which must have the correct versions. This is why installing Airflow is a bit more involved than a simple `pip install apache-airflow`:
 
 ```shell
-AIRFLOW_VERSION=2.8.1
-PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
+AIRFLOW_VERSION=2.10.5
+
+PYTHON_VERSION="$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
+
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 
 pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
