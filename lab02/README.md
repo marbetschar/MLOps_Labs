@@ -17,14 +17,14 @@ Afterwards, you will learn how to build beautiful UIs for you data science appli
 
 ## Further reading
 
-Both on the topic of LLMs and UIs for data visualization there are more _many_ alternatives and extensions to what you've seen in this lab.
+Both on the topic of LLMs and UIs for data visualization there are many more alternatives and extensions to what you've seen in this lab.
 If you want to learn more about prompt engineering and building LLM-powered applications, consider taking a closer look at one of the following:
 
 - [`langchain`](https://python.langchain.com/docs/get_started/introduction), a framework for developing context-aware applications powered by language models.
 - [`llama-index`](https://docs.llamaindex.ai/en/stable/), another library for building "retrieval-augmented generation" (context-aware LLM applications).
 - [`llama.cpp`](https://github.com/ggerganov/llama.cpp) / [`ggml`](https://github.com/ggerganov/ggml) for `C/C++` implementations of Llama and many other big models - in case you are more interested in the "low-level" details.
 
-If you would be interested in data visualization, here are a few pointers to libraries and resources that could be interesting.
+If you are interested in data visualization, here are a few pointers to libraries and resources that could be interesting.
 
 - [`from Data to Viz`](https://www.data-to-viz.com/), a website that helps you choose the right visualization method for your data.
 - [`Plotly`](https://plotly.com/python/), a "graphing library makes interactive, publication-quality graphs"; an alternative to `matplotlib`.

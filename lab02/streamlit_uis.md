@@ -40,7 +40,7 @@ So, how come this system works even though the app is reloaded every time your i
 
 But enough theory, let's look at some code!
 
-_You can follow along by running the examples in the `snippets` directory.
+You can follow along by running the examples in the `snippets` directory.
 
 ## Display and style data
 
