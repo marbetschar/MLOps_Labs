@@ -6,7 +6,7 @@ In their own words:
 
 > MLflow is an open-source platform, purpose-built to assist machine learning practitioners and teams in handling the complexities of the machine learning process. MLflow focuses on the full lifecycle for machine learning projects, ensuring that each phase is manageable, traceable, and reproducible.
 
-MLFLow is an end-to-end platform with several components and be used for much more than Experiment management:
+MLFLow is an end-to-end ML platform with several components that can be used for much more than experiment management:
 
 - [Tracking][1]: An API and UI for logging parameters, code versions, metrics, and artifacts.
 - [Evaluate][2]: `mlflow.evaluate` provides an API to evaluate the performance of a model on one or more datasets. It supports classification, regression, and a range of language modeling tasks. Evaluations are logged to the tracking API.
@@ -16,7 +16,7 @@ MLFLow is an end-to-end platform with several components and be used for much mo
 - [Prompt Engineering UI][6]: A dedicated UI for experimenting, refining, and evaluating prompts.
 - [Recipes][7]: Blueprints for structuring (real-world) ML projects and deployments.
 
-In this lab, we will primarily be using the Tracking. Other components follow in future Labs.
+In this lab, we will primarily be using the tracking. Other components follow in future labs.
 Note that you have to use your own computer for the MLflow parts. Google Colab has dropped support for background processes, which we need for this lab.
 
 ## The MLflow UI
@@ -33,17 +33,17 @@ This will start an MLFlow tracking server, its UI and all the other necessary co
 
 As you can see, there are two tabs: one for experiments and one for models. In the subsequent sections, we will introduce the various components, so keep the MLflow instance running.
 
-##  What you will learn
+## What you will learn
 
 | Topic                 | Notebook |
 |-----------------------|----------|
-| Experiment tracking with MLflow  | [Tracking](mlflow_tracking.ipynb) |
-| Hyperparameter tuning with  Ray Tune | [Tuning](ray_tune.ipynb) ([Solution](ray_tune_solution.ipynb))|
+| Experiment tracking with MLflow | [Tracking](mlflow_tracking.ipynb) |
+| Hyperparameter tuning with Ray Tune | [Tuning](ray_tune.ipynb) ([Solution](ray_tune_solution.ipynb))|
 | Hyperparameter tuning a teeny tiny diffusion model| [Diffusing](diffusion.ipynb)|
 
 ## Further reading
 
-As mentioned in the respective notebooks, both MLflow and Ray can do _much_ more than we have showed you here that could be of interest to you - not only because they might act as inspiration for your MLOps project later in the semester. We highly recommend you to take a look at the other features of both tools. For your convenience, we repeat the MLFlow documentation links below.
+As mentioned in the respective notebooks, both MLflow and Ray can do much more than we have shown you here that could be of interest to you - not only because they might act as inspiration for your MLOps project later in the semester. We highly recommend you take a look at the other features of both tools. For your convenience, we repeat the MLFlow documentation links below.
 
 ### MLflow
 
@@ -69,7 +69,7 @@ If you like distributed computing but for some reason don't like Ray, maybe [`Da
 ### Hyperparameter tuning
 
 As you have likely realized when solving the hyperparameter tuning Jupyter notebook, there is much more to it than simple grid search.
-Here is a non-exhaustive list of resource that could be of interest if you want to learn more.
+Here is a non-exhaustive list of resources that could be of interest if you want to learn more.
 
 - **Random Search for Hyper-Parameter Optimization** by James Bergstra and Yoshua Bengio (2012)
   - This paper introduced the concept of using random search for hyperparameter optimization, showing its effectiveness compared to grid search.
@@ -92,7 +92,7 @@ Here is a non-exhaustive list of resource that could be of interest if you want 
 - **Nevergrad – A Gradient-Free Optimization Platform** by The Nevergrad team (2020)
   - Nevergrad is an open-source Python platform for derivative-free optimization, which includes hyperparameter tuning algorithms among its features.
 
-For most method, open source implementations are available. If you are looking for other hyperparameter tuning libraries, here are some suggestions:
+For most methods, open-source implementations are available. If you are looking for other hyperparameter tuning libraries, here are some suggestions:
 
 - [`Ax`](https://ax.dev/), a framework for adaptive experimentation.
 - [`BoTorch`](https://botorch.org/), Bayesian optimization in PyTorch.
