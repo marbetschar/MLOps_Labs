@@ -34,7 +34,7 @@ if __name__ == "__main__":
     project_id = config["project_id"]
 
     location = config["region"]
-    service_account_file = "./credential.json"
+    service_account_file = "/app/credential.json"
     credentials = service_account.Credentials.from_service_account_file(service_account_file)
     client = bigquery.Client(project=project_id, credentials=credentials, location=location)
     df.to_gbq(
