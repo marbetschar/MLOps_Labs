@@ -167,5 +167,5 @@ mlruns/
 lab04/bin
 lab04/deepchecks_intro/hymenoptera*
 lab04/deepchecks_intro/report*
-lab04/deepchecks_intro/model.pth
-
+*.pth
+lab07/notebooks/data/
