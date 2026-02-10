@@ -13,6 +13,9 @@ This is the repository for the labs/tutorials of the lecture Machine Learning Op
 |   5  | From notebooks to pipelines to batch processing | Jupyter, Ploomber, Airflow | [Lab 05](lab05/README.md) |
 |   6  | Data-centric MLOps | Git LFS, DVC, Albumentations, diffusers | [Lab 06](lab06/README.md) |
 |   7  | Deploying and protecting machine learning models | MLServer, Alibi Detect | [Lab 07](lab07/README.md) |
+|      | Creating a (shared) VM in GCP | Google Cloud |  [GCP](GCP/README.md) |
+|      | Vertex AI tutorial |Google cloud Vertex AI | [VertexAI](VertexAI/README.md) |
+|      | Example showing how to use python packages with Jupyter Notebooks | Jupyter | [Sample](sample/readme.md)
 
 ## Setup
 
@@ -83,11 +86,11 @@ To run notebooks locally, proceed as follows:
 6. In the code cell, add the following:
 
 ```shell
-!git clone https://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@github.com/bil-y/MLOps_Labs
-%cd MLOps_Labs/path/to/notebook
+!git clone https://github_pat_[PAT]@github.com/MLOps-ZHAW/MLOps_Labs
+%cd MLOps_Labs/[path/to/notebook]
 ```
 
-where you replace `path/to/notebook` with the path to the jupyter notebook you just opened. For instance, if you opened `lab01a.ipynb`, the statement would become `%cd MLOps_Labs/lab01`.
+where `[PAT]` is a Github Access Token (looks like `gitgub_pat_.....`, your lecturer will tell you), and you replace `[path/to/notebook]` with the path to the jupyter notebook you just opened. For instance, if you opened `lab01a_01_tensor_tutorial.ipynb`, the statement would become `%cd MLOps_Labs/lab01`.
 
 7. Connect to a GPU by changing the runtime type:
    ![Change Colab runtime](imgs/colab_change_runtime_type.png)
