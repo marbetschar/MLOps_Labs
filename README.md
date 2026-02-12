@@ -2,6 +2,8 @@
 
 This is the repository for the labs/tutorials of the lecture Machine Learning Operations (MLOps), ZHAW.
 
+**NOTE:** Labs might still be in the process of being updated, please refresh right before the corresponding lab is touched in the lecture!
+
 ## Table of Contents
 
 | Lab No. | Contents | Tools | Link |
@@ -58,8 +60,8 @@ Images sometimes do not render correctly in Colab, and some features might not w
 
 To run notebooks locally, proceed as follows:
 
-1. Open a terminal and navigate to the lab directory (e.g. `lab01`).
-2. Activate the conda environment for this labe (e.g. `mlops-lab-01`).
+1. Open a terminal and navigate to the lab directory (e.g. `cd lab01`).
+2. Activate the conda environment for this lab (see above e.g. e.g. `conda activate mlops-lab-01`).
 3. Run `jupyter lab`. This will result in output similar to the following:
 
 ```shell
