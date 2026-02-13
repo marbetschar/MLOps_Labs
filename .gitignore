@@ -166,6 +166,6 @@ mlartifacts/
 mlruns/
 lab04/bin
 hymenoptera*
-report*
+report.html
 *.pth
 lab07/notebooks/data/
