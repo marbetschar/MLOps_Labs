@@ -1,6 +1,6 @@
 # MLOps
 
-This is the repository for the labs/tutorials of the lecture Machine Learning Operations (MLOps), ZHAW.
+This is the repository for the labs/tutorials of a course about Machine Learning Operations (MLOps), ZHAW.
 
 **NOTE:** Labs might still be in the process of being updated, please refresh right before the corresponding lab is touched in the lecture!
 
