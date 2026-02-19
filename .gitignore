@@ -176,3 +176,5 @@ webserver_config.py
 lab05/airflow/logs/
 lab05/ploomber/output/
 
+# PyCharm
+.idea/
